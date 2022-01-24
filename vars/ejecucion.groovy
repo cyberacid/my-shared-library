@@ -18,6 +18,7 @@ def call() {
                         //Acá reemplazar por su propio repositorio
                         userRemoteConfigs: [[url: 'https://github.com/cyberacid/ejemplo-maven.git']]])
                         sh "echo ${env.payload}"
+                        sh 'printenv'
                 }
             }
             stage("Paso 1: Compliar"){
