@@ -46,6 +46,7 @@ def call() {
                     }
                 }
             }
+            /*
             stage("Paso 4: Análisis SonarQube"){
                 steps {
                     withSonarQubeEnv('sonarqube') {
@@ -113,7 +114,7 @@ def call() {
                         ]
                     ]
                 }
-            }
+            }*/
         }
     }
 }
