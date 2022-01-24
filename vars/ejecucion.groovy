@@ -6,7 +6,6 @@ def call() {
         environment {
             NEXUS_USER = credentials('user-nexus')
             NEXUS_PASSWORD    = credentials('password-nexus')
-            PAYLOAD = env.payload
         }
         
         stages {
@@ -18,7 +17,7 @@ def call() {
                         branches: [[name: "sonarqube" ]],
                         //Acá reemplazar por su propio repositorio
                         userRemoteConfigs: [[url: 'https://github.com/cyberacid/ejemplo-maven.git']]])
-                        sh "echo ${PAYLOAD}"
+                        sh "echo ${env.payload}"
                 }
             }
             stage("Paso 1: Compliar"){
