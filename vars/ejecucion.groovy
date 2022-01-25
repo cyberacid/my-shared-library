@@ -124,7 +124,7 @@ def call() {
             }
             success {
                 sh "echo 'fase success'"
-                slackSend "Build Status - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+                slackSend "Build Status Test"
             }
 
             failure {
