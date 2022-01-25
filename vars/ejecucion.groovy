@@ -121,10 +121,10 @@ def call() {
         post {
             always {
                 sh "echo 'fase always executed post'"
-                slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
             }
             success {
                 sh "echo 'fase success'"
+                slackSend "Build Status - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
             }
 
             failure {
