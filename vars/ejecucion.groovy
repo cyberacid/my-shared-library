@@ -1,4 +1,4 @@
-// vars/ci.groovy
+// vars/ejecucion.groovy
 def call() {
     pipeline {
         agent any
@@ -17,7 +17,7 @@ def call() {
                         branches: [[name: "sonarqube" ]],
                         //Acá reemplazar por su propio repositorio
                         userRemoteConfigs: [[url: 'https://github.com/cyberacid/ejemplo-maven.git']]])
-                        sh "echo ${env.payload}"
+                        sh "echo ${env.GIT_BRANCH}"
                         sh 'printenv'
                 }
             }
