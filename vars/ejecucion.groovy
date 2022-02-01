@@ -2,7 +2,26 @@
 def call() {
     pipeline {
         agent any
-        
+        triggers {
+        GenericTrigger(
+         genericVariables: [
+          [key: 'ref', value: '$.ref']
+         ],
+
+         causeString: 'Triggered on $ref',
+
+         token: 'abc123',
+         tokenCredentialId: '',
+
+         printContributedVariables: true,
+         printPostContent: true,
+
+         silentResponse: false,
+
+         regexpFilterText: '$ref',
+         regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
+        )
+      }
         environment {
             NEXUS_USER = credentials('user-nexus')
             NEXUS_PASSWORD    = credentials('password-nexus')
