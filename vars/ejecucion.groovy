@@ -54,7 +54,7 @@ def call() {
                 steps {
                     script{
                         env.TAREA = ""
-                        switch(params.compileTool)
+                        switch($compileTool)
                         {
                             case 'Maven':
                                 //def ejecucion = load 'maven.groovy'
