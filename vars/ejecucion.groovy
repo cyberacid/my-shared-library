@@ -29,14 +29,7 @@ def call() {
         }
         
        
-        parameters {
-            choice(
-                name:'compileTool',
-                choices: ['Maven', 'Gradle'],
-                description: 'Seleccione herramienta de compilacion'
-            )
-            string description: 'Ingrese un stage para ejecutar', name: 'stages', trim: true
-        }
+        
         environment {
             NEXUS_USER = credentials('user-nexus')
             NEXUS_PASSWORD    = credentials('password-nexus')
