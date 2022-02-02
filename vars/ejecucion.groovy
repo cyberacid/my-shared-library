@@ -3,25 +3,33 @@ def call() {
     pipeline {
         agent any
         triggers {
-        GenericTrigger(
-         genericVariables: [
-          [key: 'ref', value: '$.ref']
-         ],
+            GenericTrigger(
+             genericVariables: [
+              [key: 'ref', value: '$.ref']
+             ],
 
-         causeString: 'Triggered on $ref',
+             causeString: 'Triggered on $ref',
 
-         token: 'abc123',
-         tokenCredentialId: '',
+             token: 'abc123',
+             tokenCredentialId: '',
 
-         printContributedVariables: true,
-         printPostContent: true,
+             printContributedVariables: true,
+             printPostContent: true,
 
-         silentResponse: false,
+             silentResponse: false,
 
-         regexpFilterText: '$ref',
-         regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
-        )
-      }
+             regexpFilterText: '$ref',
+             regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
+            )
+        }
+        parameters {
+            choice(
+                name:'compileTool',
+                choices: ['Maven', 'Gradle'],
+                description: 'Seleccione herramienta de compilacion'
+            )
+            string description: 'Ingrese un stage para ejecutar', name: 'stages', trim: true
+        }
         environment {
             NEXUS_USER = credentials('user-nexus')
             NEXUS_PASSWORD    = credentials('password-nexus')
@@ -30,6 +38,8 @@ def call() {
         stages {
             stage("Paso 0: Download and checkout"){
                 steps {
+                    
+                    
                     checkout(
                         [$class: 'GitSCM',
                         //Acá reemplazar por el nonbre de branch
@@ -38,6 +48,26 @@ def call() {
                         userRemoteConfigs: [[url: 'https://github.com/cyberacid/ejemplo-maven.git']]])
                         sh "echo ${env.GIT_BRANCH}"
                         sh 'printenv'
+                }
+            }
+            stage("Paso 00: Select Compile Tool") {
+                steps {
+                    script{
+                        env.TAREA = ""
+                        switch(params.compileTool)
+                        {
+                            case 'Maven':
+                                //def ejecucion = load 'maven.groovy'
+                                //maven.call(params.stages)
+                            sh "echo MAVEN"
+                            break;
+                            case 'Gradle':
+                                //def ejecucion = load 'gradle.groovy'
+                                //gradle.call(params.stages)
+                            sh "echo GRADLE"
+                            break;
+                        }
+                    }
                 }
             }
             stage("Paso 1: Compliar"){
