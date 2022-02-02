@@ -7,8 +7,13 @@ def call() {
              genericVariables: [
               [key: 'ref', value: '$.ref']
              ],
+                
 
              causeString: 'Triggered on $ref',
+                genericRequestVariables: [
+                [key: 'compileTool', regexpFilter: ''], 
+                [key: 'stages', regexpFilter: '']
+            ],
 
              token: 'abc123',
              tokenCredentialId: '',
@@ -22,6 +27,8 @@ def call() {
              regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
             )
         }
+        
+       
         parameters {
             choice(
                 name:'compileTool',
