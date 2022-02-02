@@ -9,11 +9,12 @@ def call() {
              ],
                 
 
-             causeString: 'Triggered on $ref',
+             
                 genericRequestVariables: [
                 [key: 'compileTool', regexpFilter: ''], 
                 [key: 'stages', regexpFilter: '']
             ],
+                causeString: 'Triggered on $compileTool',
              token: 'abc123',
              tokenCredentialId: '',
 
