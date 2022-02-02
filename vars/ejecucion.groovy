@@ -14,7 +14,7 @@ def call() {
                 [key: 'compileTool', regexpFilter: ''], 
                 [key: 'stages', regexpFilter: '']
             ],
-
+             env.compileTool = $compileTool,
              token: 'abc123',
              tokenCredentialId: '',
 
@@ -54,7 +54,7 @@ def call() {
                 steps {
                     script{
                         env.TAREA = ""
-                        switch($compileTool)
+                        switch(env.compileTool)
                         {
                             case 'Maven':
                                 //def ejecucion = load 'maven.groovy'
