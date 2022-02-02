@@ -58,7 +58,7 @@ def call() {
                         if (fileExists('build.gradle')) {
                             sh "echo 'App Gradle'"
                             //maven.call(params.stages)
-                        } else if(fileExists('build.gradle'))  {
+                        } else if(fileExists('pom.xml'))  {
                             sh "echo 'App Maven'"
                             //gradle.call(params.stages)
                         } else {
