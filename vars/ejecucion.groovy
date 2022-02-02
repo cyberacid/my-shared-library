@@ -54,17 +54,28 @@ def call() {
                 steps {
                     script{
                         env.TAREA = ""
+                        
+                        if (fileExists('build.gradle')) {
+                            sh "echo 'App Gradle'"
+                            //maven.call(params.stages)
+                        } else if(fileExists('build.gradle'))  {
+                            sh "echo 'App Maven'"
+                            //gradle.call(params.stages)
+                        } else {
+                            sh "echo 'App sin identificar'"
+                        }
+                        
                         switch(env.compileTool)
                         {
                             case 'Maven':
                                 //def ejecucion = load 'maven.groovy'
                                 //maven.call(params.stages)
-                            sh "echo MAVEN"
+                            sh "echo 'MAVEN'"
                             break;
                             case 'Gradle':
                                 //def ejecucion = load 'gradle.groovy'
                                 //gradle.call(params.stages)
-                            sh "echo GRADLE"
+                            sh "echo 'GRADLE'"
                             break;
                         }
                     }
