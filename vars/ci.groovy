@@ -83,7 +83,7 @@ stage("Paso 6: Release"){
       env.TAREA = env.STAGE_NAME
       sh "git checkout develop && git pull origin develop"
       def ret = sh(script: 'git branch | grep -q "release-v2-0-0"; echo $?', returnStdout: true)
-      echo ret
+      sh "echo '$ret'"
       if (ret == 0) {
         sh "git branch -D release-v2-0-0"
       }
