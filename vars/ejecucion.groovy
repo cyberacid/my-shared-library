@@ -55,13 +55,13 @@ def call() {
                 steps {
                     script{
                         env.TAREA = ""
-                        
+                        sh "echo STAGES: ${env.stages}"
                         if (fileExists('build.gradle')) {
                             sh "echo 'App Gradle'"
-                            maven.call(env.stages)
+                            //maven.call(env.stages)
                         } else if(fileExists('pom.xml'))  {
                             sh "echo 'App Maven'"
-                            gradle.call(env.stages)
+                            //gradle.call(env.stages)
                         } else {
                             sh "echo 'App sin identificar'"
                         }
@@ -82,6 +82,7 @@ def call() {
                     }
                 }
             }
+            /*
             stage("Paso 1: Compliar"){
                 steps {
                     script {
@@ -109,7 +110,7 @@ def call() {
                     }
                 }
             }
-            /*
+            
             stage("Paso 4: Análisis SonarQube"){
                 steps {
                     withSonarQubeEnv('sonarqube') {
