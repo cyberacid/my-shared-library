@@ -58,10 +58,10 @@ def call() {
                         sh "echo 'STAGES: ${env.stages} compileTool: ${env.compileTool}'"
                         if (fileExists('build.gradle')) {
                             sh "echo 'App Gradle'"
-                            maven.call(env.stages)
+                            gradle.call(env.stages)
                         } else if(fileExists('pom.xml'))  {
                             sh "echo 'App Maven'"
-                            gradle.call(env.stages)
+                            maven.call(env.stages)
                         } else {
                             sh "echo 'App sin identificar'"
                         }
