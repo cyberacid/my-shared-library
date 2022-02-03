@@ -55,7 +55,7 @@ def call() {
                 steps {
                     script{
                         env.TAREA = ""
-                        sh "echo STAGES: ${env.stages}"
+                        sh "echo STAGES: ${env.stages} compileTool: ${env.compileTool}"
                         if (fileExists('build.gradle')) {
                             sh "echo 'App Gradle'"
                             //maven.call(env.stages)
