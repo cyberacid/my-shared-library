@@ -12,7 +12,7 @@ def call(stages, compileTool){
         //sonar()
         //nexusUpload()
         gitCreateRelease() 
-  }
+  
 
 }
 
