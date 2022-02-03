@@ -36,7 +36,7 @@ def call() {
         }
         
         stages {
-            stage("Paso 0: Download and checkout"){
+            /*stage("Paso 0: Download and checkout"){
                 steps {
                     
                     
@@ -50,6 +50,7 @@ def call() {
                         sh 'printenv'
                 }
             }
+            */
             stage("Paso 00: Select Compile Tool") {
                 steps {
                     script{
@@ -57,10 +58,10 @@ def call() {
                         
                         if (fileExists('build.gradle')) {
                             sh "echo 'App Gradle'"
-                            //maven.call(params.stages)
+                            maven.call(env.stages)
                         } else if(fileExists('pom.xml'))  {
                             sh "echo 'App Maven'"
-                            //gradle.call(params.stages)
+                            gradle.call(env.stages)
                         } else {
                             sh "echo 'App sin identificar'"
                         }
