@@ -7,7 +7,7 @@ def call(stages){
   
     def branch = env.GIT_BRANCH;
 
-  if (branch.startsWith('feature-') || branch = 'develop') {
+  if (branch.startsWith('feature-') || branch == 'develop') {
       compile()
       unitTest()
         jar()
