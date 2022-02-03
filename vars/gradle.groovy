@@ -22,15 +22,15 @@ def call(stages){
     def stagesArray = []
         //stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
 
-    if (stagesArray.isEmpty()) {
+  /*  if (stagesArray.isEmpty()) {*/
         echo 'El pipeline se ejecutará completo'
         allStages()
-    } else {
+/*    } else {
         echo 'Stages a ejecutar :' + stages
         stagesArray.each{ stageFunction ->//variable as param
             echo 'Ejecutando ' + stageFunction
             "${stageFunction}"()
-        }
+        }*/
     }
 
     
