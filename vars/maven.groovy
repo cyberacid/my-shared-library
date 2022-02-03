@@ -106,7 +106,7 @@ stage("Paso 7: Descargar Nexus"){
 
 }
 
-def run() {
+def sRun() {
 
   stage("Paso 8: Levantar Artefacto Jar"){
       env.TAREA = env.STAGE_NAME
