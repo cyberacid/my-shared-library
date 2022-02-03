@@ -11,7 +11,9 @@ def call(stages, compileTool){
         jar()
         //sonar()
         //nexusUpload()
-        gitCreateRelease() 
+        if (env.GIT_BRANCH == 'develop') {
+          gitCreateRelease() 
+        } 
   
 
 }
@@ -80,9 +82,11 @@ def gitCreateRelease() {
 stage("Paso 6: Release"){
       env.TAREA = env.STAGE_NAME
       sh "git checkout develop && git pull origin develop"
-      sh "git branch -D release-v1.0.0"
-      sh "git checkout -b release-v1.0.0"
-      sh "git push origin release-v1.0.0"
+      def ret = sh(script: 'git branch | grep "release-v2-0-0"', returnStdout: true)
+      println ret
+      sh "git branch -D release-v2-0-0"
+      sh "git checkout -b release-v2-0-0"
+      sh "git push origin release-v2-0-0"
   }
 
 }
