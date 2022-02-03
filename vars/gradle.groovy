@@ -20,7 +20,7 @@ def call(stages){
 
     def arrayUtils = new array.arrayExtentions();
     def stagesArray = []
-        stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
+        //stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
 
     if (stagesArray.isEmpty()) {
         echo 'El pipeline se ejecutará completo'
