@@ -30,8 +30,8 @@ def call(stages){
         stagesArray.each{ stageFunction ->//variable as param
             echo 'Ejecutando ' + stageFunction
             "${stageFunction}"()
-        }*/
-    }
+        }
+    }*/
 
     
 
