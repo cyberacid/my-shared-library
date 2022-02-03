@@ -18,7 +18,7 @@ def call(stages){
         'curl_jar': 'sTest'
     ]
 
-    def arrayUtils = new array.arrayExtentions();
+    //def arrayUtils = new array.arrayExtentions();
     def stagesArray = []
         //stagesArray = arrayUtils.searchKeyInArray(stages, ";", listStagesOrder)
 
