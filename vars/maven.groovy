@@ -81,7 +81,7 @@ stage("Paso 6: Subir Nexus"){
 def gitCreateRelease() {
 stage("Paso 3: Release"){
       env.TAREA = env.STAGE_NAME
-      sh "git checkout develop && git pull orign develop"
+      sh "git checkout develop && git pull origin develop"
       sh "git checkut -b release-v1.0.0"
       sh "git push origin release-v1.0.0"
   }
