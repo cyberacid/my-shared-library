@@ -37,21 +37,7 @@ def call() {
         }
         
         stages {
-            /*stage("Paso 0: Download and checkout"){
-                steps {
-                    
-                    
-                    checkout(
-                        [$class: 'GitSCM',
-                        //Acá reemplazar por el nonbre de branch
-                        branches: [[name: "sonarqube" ]],
-                        //Acá reemplazar por su propio repositorio
-                        userRemoteConfigs: [[url: 'https://github.com/cyberacid/ejemplo-maven.git']]])
-                        sh "echo ${env.GIT_BRANCH}"
-                        sh 'printenv'
-                }
-            }
-            */
+
             stage("Paso 00: Select Compile Tool") {
                 steps {
                     script{
@@ -59,13 +45,21 @@ def call() {
                         sh "echo 'STAGES: ${env.stages} compileTool: ${env.compileTool}'"
                         if (fileExists('build.gradle')) {
                             sh "echo 'App Gradle'"
-                            gradle.call(env.stages)
+                            //gradle.call(env.stages, env.compileTool)
                         } else if(fileExists('pom.xml'))  {
                             sh "echo 'App Maven'"
-                            maven.call(env.stages)
+                            //maven.call(env.stages, env.compileTool)
                         } else {
                             sh "echo 'App sin identificar'"
                         }
+
+                            def branch = env.GIT_BRANCH;
+
+                            if (branch.startsWith('feature-') || branch == 'develop') {
+                                ci.call(env.stages, env.compileTool)
+                            } else if (branch.startWith('release-v')) {
+                                cd.call(env.stages, env.compileTool)
+                            }
                         
                         switch(env.compileTool)
                         {
