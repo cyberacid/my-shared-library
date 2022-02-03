@@ -79,7 +79,7 @@ stage("Paso 6: Subir Nexus"){
 }
 
 def gitCreateRelease() {
-stage("Paso 3: Release"){
+stage("Paso 6: Release"){
       env.TAREA = env.STAGE_NAME
       sh "git checkout develop && git pull origin develop"
       sh "git branch -D release-v1.0.0"
@@ -91,7 +91,7 @@ stage("Paso 3: Release"){
 
 
 def gitDiff(branch) {
-stage("Paso 3: Git Diff"){
+stage("Paso 7: Git Diff"){
       env.TAREA = env.STAGE_NAME
       sh "DIFERENCIAS ${branch} VS MAIN:"
       sh "git diff ${branch}..main"
@@ -100,7 +100,7 @@ stage("Paso 3: Git Diff"){
 }
 
 def nexusDownload() {
-stage("Paso 7: Descargar Nexus"){
+stage("Paso 8: Descargar Nexus"){
       env.TAREA = env.STAGE_NAME
       sh ' curl -X GET -u $NEXUS_USER:$NEXUS_PASSWORD "http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar" -O'
   }
@@ -109,7 +109,7 @@ stage("Paso 7: Descargar Nexus"){
 
 def sRun() {
 
-  stage("Paso 8: Levantar Artefacto Jar"){
+  stage("Paso 9: Levantar Artefacto Jar"){
       env.TAREA = env.STAGE_NAME
       sh 'nohup bash java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null'
   }
@@ -118,7 +118,7 @@ def sRun() {
 
 def test() {
 
-  stage("Paso 9: Testear Artefacto - Dormir(Esperar 20sg) "){
+  stage("Paso 10: Testear Artefacto - Dormir(Esperar 20sg) "){
       env.TAREA = env.STAGE_NAME
       sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
   }
@@ -127,7 +127,7 @@ def test() {
 
 def gitMergeMaster(branch) {
 
-stage("Paso 3: Git Merge Master"){
+stage("Paso 11: Git Merge Master"){
       env.TAREA = env.STAGE_NAME
       sh "git checkout main && git pull origin main"
       sh "git merge --no-ff ${branch}"
@@ -136,7 +136,7 @@ stage("Paso 3: Git Merge Master"){
 }
 
 def gitMergeDevelop(branch) {
-stage("Paso 3: Git Merge Develop"){
+stage("Paso 12: Git Merge Develop"){
       env.TAREA = env.STAGE_NAME
       sh "git checkout main && git pull origin main"
       sh "git merge --no-ff ${branch}"
@@ -147,7 +147,7 @@ stage("Paso 3: Git Merge Develop"){
 
 def gitTagMaster(tag) {
 
-stage("Paso 3: Git Merge Develop"){
+stage("Paso 13: Git Merge Develop"){
       env.TAREA = env.STAGE_NAME
       sh "git checkout main && git pull origin main"
       sh "git tag ${tag}"
