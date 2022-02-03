@@ -33,7 +33,11 @@ def call(stages){
         }
     }
 
-    def allStages(){
+    
+
+}
+
+def allStages(){
         sBuild()
         sSonar()
         sCurl()
@@ -41,9 +45,8 @@ def call(stages){
         sNexusDownload()
         sJar()
         sTest()
-    }
-
 }
+
 def sBuild() {
     stage("Paso 1: Build && Test"){
         env.TAREA = env.STAGE_NAME
