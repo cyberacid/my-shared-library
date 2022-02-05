@@ -42,6 +42,8 @@ def call() {
                 steps {
                     script{
                         env.TAREA = ""
+                        GIT_REPO = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
+                        sh "echo ' PROJECT SONAR ${GIT_REPO}-${env.GIT_BRANCH}-${env.BUILD_NUMBER}'"
                         sh "echo 'STAGES: ${env.stages} compileTool: ${env.compileTool}'"
                         if (fileExists('build.gradle')) {
                             sh "echo 'App Gradle'"
